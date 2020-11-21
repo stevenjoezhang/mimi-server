@@ -16,7 +16,6 @@
  */
 
 const express = require("express");
-const path = require("path");
 const os = require("os");
 const chalk = require("chalk");
 
@@ -27,6 +26,7 @@ const server = http.createServer(app);
 class MiServer {
     constructor(config) {
         this.port = config.port;
+        this.static = config.static;
         this.validate();
         this.createServer();
     }
@@ -53,7 +53,7 @@ class MiServer {
         });
 
         // Routing
-        app.use(express.static(path.join(__dirname, "public")));
+        app.use(express.static(this.static));
     }
 }
 
