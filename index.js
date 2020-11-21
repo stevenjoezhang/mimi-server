@@ -27,6 +27,8 @@ class MiServer {
     constructor(config) {
         this.port = config.port;
         this.static = config.static;
+        this.app = app;
+        this.server = server;
         this.validate();
         this.createServer();
     }
@@ -39,7 +41,7 @@ class MiServer {
     }
 
     createServer() {
-        server.listen(this.port, () => {
+        this.server.listen(this.port, () => {
             console.log(chalk.yellow("Server available on:"));
             const ifaces = os.networkInterfaces();
             Object.keys(ifaces).forEach(dev => {
@@ -53,7 +55,7 @@ class MiServer {
         });
 
         // Routing
-        app.use(express.static(this.static));
+        this.app.use(express.static(this.static));
     }
 }
 
