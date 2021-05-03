@@ -15,12 +15,13 @@
  *  GNU General Public License for more details.
  */
 
-const express = require("express");
-const os = require("os");
-const chalk = require("chalk");
+import express from "express";
+
+import os from "os";
+import chalk from "chalk";
 
 const app = express();
-const http = require("http");
+import http from "http";
 const server = http.createServer(app);
 
 class MiServer {
@@ -59,4 +60,4 @@ class MiServer {
     }
 }
 
-module.exports = MiServer;
+export default MiServer;
