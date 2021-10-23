@@ -18,7 +18,7 @@
 import express from "express";
 
 import os from "os";
-import chalk from "chalk";
+import pc from "picocolors";
 
 const app = express();
 import http from "http";
@@ -43,12 +43,12 @@ class MiServer {
 
     createServer() {
         this.server.listen(this.port, () => {
-            console.log(chalk.yellow("Server available on:"));
+            console.log(pc.yellow("Server available on:"));
             const ifaces = os.networkInterfaces();
             Object.keys(ifaces).forEach(dev => {
                 ifaces[dev].forEach(details => {
                     if (details.family === 'IPv4') {
-                        console.log((`  http://${details.address}:${chalk.green(this.port.toString())}`));
+                        console.log((`  http://${details.address}:${pc.green(this.port.toString())}`));
                     }
                 });
             });
