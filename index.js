@@ -55,6 +55,14 @@ class MiServer {
             console.log("Hit CTRL-C to stop the server");
         });
 
+        this.server.on("error", e => {
+            if (e.code === "EADDRINUSE") {
+                console.log(pc.yellow("Address already in use, abort."));
+                this.server.close();
+                process.exit(1);
+            }
+        });
+
         // Routing
         this.app.use(express.static(this.static));
     }
